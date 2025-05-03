@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+
+namespace Homework7
+{
+    internal class FindPattern
+    {
+        static private int counter;
+        static public int Counter { get { return counter; } }
+        static public string Find(string input, string pattern)
+        {
+            int _counter = 0;
+            string result = string.Empty;
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            MatchCollection matches = regex.Matches(input);
+            foreach (Match match in matches)
+            {
+                result += match.ToString() + "|";
+                _counter++;
+            }
+            //Console.WriteLine($"Всего найдено {counter} совпадений");
+            counter = _counter;
+            return result;
+        }
+    }
+}
